@@ -1,0 +1,46 @@
+version: "3.7"
+
+services:
+
+  db:
+    image: mysql:5
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: DemoPass321
+    volumes:
+      - ./data/mysql:/var/lib/mysql/
+      - ./logs/mysql:/var/log/mysql
+    ports:
+      - "127.0.0.1:3306:3306"
+    networks:
+      - localdev
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - "127.0.0.1:8080:8080"
+    depends_on:
+      - db
+    networks:
+      - localdev
+  web:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    command: go run ./cmd/web
+    links:
+        - db:mysql.local
+    volumes:
+        - .:/app
+    ports:
+      - "127.0.0.1:4000:4000"
+    depends_on:
+      - db
+    networks:
+      - localdev
+
+networks:
+  localdev:
+    driver: bridge
+      
