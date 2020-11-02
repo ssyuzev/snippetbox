@@ -45,7 +45,7 @@ go get github.com/go-sql-driver/mysql@v1
     );
 ```
 - ```
-    CREATE USER 'web'@'localhost';
-    GRANT SELECT, INSERT, UPDATE ON snippetbox.* TO 'web'@'localhost';
-    ALTER USER 'web'@'localhost' IDENTIFIED BY 'pass';
+    CREATE USER 'web'@'%';
+    GRANT SELECT, INSERT, UPDATE ON snippetbox.* TO 'web'@'%';
+    ALTER USER 'web'@'%' IDENTIFIED BY 'pass';
 ```
