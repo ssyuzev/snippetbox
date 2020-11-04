@@ -1,10 +1,6 @@
 # snippetbox
 
 
-## Install the dependencies:
-go get github.com/go-sql-driver/mysql@v1
-
-
 ## Default run:
 - `docker-compose build`
 - `docker-compose up -d`
