@@ -14,6 +14,10 @@ run:
 down:
 	docker-compose down
 
+.PHONY: stop
+stop:
+	docker-compose down
+
 .PHONY: silent
 silent:
 	docker-compose up -d
